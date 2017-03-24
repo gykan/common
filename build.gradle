@@ -1,0 +1,48 @@
+group 'com.gykan'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            credentials {
+                username artUsername
+                password artPassword
+            }
+            url "http://artifactory.be.sharecare.com/JAM-snapshot-local"
+            name = "maven-jamp-snapshot"
+        }
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+task sourceJar(type: Jar) {
+    from "src/main/java"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    add buildscript.repositories.getByName("maven-jamp-snapshot")
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact file("$buildDir/libs/$description-$version" + ".jar")
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+    repositories {
+        add buildscript.repositories.getByName("maven-jamp-snapshot")
+    }
+}
