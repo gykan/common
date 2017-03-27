@@ -1,9 +1,9 @@
 #!groovy
 
 node {
-    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: artifactory_credentials,
+    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'artifactory_credentials',
                           usernameVariable: 'ARTUSERNAME', passwordVariable: 'ARTPASSWORD'],
-                     [$class: 'UsernamePasswordMultiBinding', credentialsId: aws_credentials,
+                     [$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws_credentials',
                           usernameVariable: 'AWS_ID', passwordVariable: 'AWS_KEY']]) {
         stage('Fetch') {
             checkout scm
