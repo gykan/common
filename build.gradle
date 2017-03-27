@@ -12,8 +12,8 @@ buildscript {
                 username artUsername
                 password artPassword
             }
-            url "http://localhost:8081/ext-snapshot-local"
-            name = "maven-ext-snapshot"
+            url "http://localhost:8081/libs-snapshot"
+            name = "local-libs-snapshot"
         }
     }
 }
@@ -30,7 +30,7 @@ task sourceJar(type: Jar) {
 repositories {
     mavenCentral()
     mavenLocal()
-    add buildscript.repositories.getByName("maven-ext-snapshot")
+    add buildscript.repositories.getByName("local-libs-snapshot")
 }
 
 publishing {
@@ -43,6 +43,6 @@ publishing {
         }
     }
     repositories {
-        add buildscript.repositories.getByName("maven-ext-snapshot")
+        add buildscript.repositories.getByName("local-libs-snapshot")
     }
 }
