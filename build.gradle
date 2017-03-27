@@ -12,8 +12,8 @@ buildscript {
                 username artUsername
                 password artPassword
             }
-            url "http://artifactory.be.sharecare.com/JAM-snapshot-local"
-            name = "maven-jamp-snapshot"
+            url "http://localhost:8081/ext-snapshot-local"
+            name = "maven-ext-snapshot"
         }
     }
 }
@@ -30,7 +30,7 @@ task sourceJar(type: Jar) {
 repositories {
     mavenCentral()
     mavenLocal()
-    add buildscript.repositories.getByName("maven-jamp-snapshot")
+    add buildscript.repositories.getByName("maven-ext-snapshot")
 }
 
 publishing {
@@ -43,6 +43,6 @@ publishing {
         }
     }
     repositories {
-        add buildscript.repositories.getByName("maven-jamp-snapshot")
+        add buildscript.repositories.getByName("maven-ext-snapshot")
     }
 }
