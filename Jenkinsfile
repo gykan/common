@@ -15,7 +15,7 @@ node {
             sh './gradlew -PartUsername=$ARTUSERNAME -PartPassword=$ARTPASSWORD test'
         }
         stage('Publish') {
-            sh './gradlew -PartUsername=$ARTUSERNAME -PartPassword=$ARTPASSWORD publish --stacktrace'
+            sh './gradlew -PartUsername=$ARTUSERNAME -PartPassword=$ARTPASSWORD publish'
         }
     }
 }
